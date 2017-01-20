@@ -35,6 +35,8 @@ function processEvent(event) {
                 sessionId: sessionIds.get(sender)
             });
 
+        console.log("Text", sender);
+
         apiaiRequest.on('response', (response) => {
             if (isDefined(response.result)) {
                 let responseText = response.result.fulfillment.speech;
