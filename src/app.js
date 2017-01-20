@@ -28,6 +28,7 @@ function processEvent(event) {
             sessionIds.set(sender, uuid.v1());
         }
 
+        console.log("Sender", sender);
         console.log("Text", text);
 
         let apiaiRequest = apiAiService.textRequest(text,
