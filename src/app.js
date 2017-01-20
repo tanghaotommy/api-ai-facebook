@@ -32,7 +32,7 @@ function processEvent(event) {
         console.log("Sender", event.sender);
         console.log("Text", text);
 
-        sendFBMessage(sender, {text: "textPart"});
+        sendFBMessage("1216016355142506", {text: "textPart"});
 
         let apiaiRequest = apiAiService.textRequest(text,
             {
