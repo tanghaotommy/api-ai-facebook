@@ -35,7 +35,7 @@ function processEvent(event) {
                 sessionId: sessionIds.get(sender)
             });
 
-        console.log("Text", sender);
+        console.log(sender);
 
         apiaiRequest.on('response', (response) => {
             if (isDefined(response.result)) {
