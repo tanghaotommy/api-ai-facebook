@@ -24,19 +24,13 @@ function processEvent(event) {
         var text = event.message ? event.message.text : event.postback.payload;
         // Handle a text message from this sender
 
-        if (!sessionIds.has(sender)) {
-            sessionIds.set(sender, uuid.v1());
-        }
-
         console.log("Event", event)
         console.log("Sender", event.sender);
         console.log("Text", text);
 
-        sendFBMessage("1216016355142506", {text: "textPart"});
-
         let apiaiRequest = apiAiService.textRequest(text,
             {
-                sessionId: sessionIds.get(sender)
+                sessionId: sender
             });
 
         console.log(sessionIds.get(sender))
