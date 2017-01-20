@@ -28,15 +28,17 @@ function processEvent(event) {
             sessionIds.set(sender, uuid.v1());
         }
 
+        console.log("Event", event)
         console.log("Sender", event.sender);
         console.log("Text", text);
+
+        sendFBMessage(sender, {text: "textPart"});
 
         let apiaiRequest = apiAiService.textRequest(text,
             {
                 sessionId: sessionIds.get(sender)
             });
 
-        console.log(sender);
         console.log(sessionIds.get(sender))
 
         apiaiRequest.on('response', (response) => {
