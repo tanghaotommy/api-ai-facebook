@@ -26,6 +26,7 @@ function processEvent(event) {
 
         console.log("Event", event)
         console.log("Sender", event.sender);
+        console.log("Message", event.message)
         console.log("Text", text);
 
         let apiaiRequest = apiAiService.textRequest(text,
