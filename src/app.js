@@ -68,22 +68,22 @@ function processEvent(event) {
             req.end();
 
 
-            let apiaiRequest = apiAiService.ContextsRequest({
-              'name' : 'user_send_photo',
-              'lifespan' : 3
-            }, {
-                sessionId: sender
-            });
+            // let apiaiRequest = apiAiService.ContextsRequest({
+            //   'name' : 'user_send_photo',
+            //   'lifespan' : 3
+            // }, {
+            //     sessionId: sender
+            // });
 
-            console.log('Happened something!')
+            // console.log('Happened something!')
 
-            apiaiRequest.on('response', (response) => {
-                console.log('Response from context setting', response.toString())
-            });
+            // apiaiRequest.on('response', (response) => {
+            //     console.log('Response from context setting', response.toString())
+            // });
 
-            apiaiRequest.on('error', (error) => console.error(error));
+            // apiaiRequest.on('error', (error) => console.error(error));
 
-            apiaiRequest.end();
+            // apiaiRequest.end();
         }
     }
 
