@@ -77,9 +77,8 @@ function processEvent(event) {
             });
 
             options = {
-              hostname: 'https://api.api.ai',
+              hostname: `https://api.api.ai/v1/contexts?sessionId=${sender}`,
               port: 80,
-              path: `/v1/contexts?sessionId=${sender}`,
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
