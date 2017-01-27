@@ -19,12 +19,13 @@ const sessionIds = new Map();
 
 function processEvent(event) {
     var sender = event.sender.id.toString();
+    console.log("Event", event)
+
 
     if ((event.message && event.message.text) || (event.postback && event.postback.payload)) {
         var text = event.message ? event.message.text : event.postback.payload;
         // Handle a text message from this sender
 
-        console.log("Event", event)
         console.log("Sender", event.sender);
         console.log("Message", event.message)
         console.log("Text", text);
