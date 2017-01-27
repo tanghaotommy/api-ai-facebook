@@ -28,9 +28,10 @@ function processEvent(event) {
             var imageUrl = event.message.attachments[0].payload.url
             console.log("Url", imageUrl)
 
-            var postData = querystring.stringify({
+            var postData = JSON.stringify({
               'type' : 'image',
-              'url' : `$postData`
+              'url' : `$imageUrl`
+              'id' : sender
             });
 
             console.log('Sent message', postData)
