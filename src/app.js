@@ -21,6 +21,13 @@ function processEvent(event) {
     var sender = event.sender.id.toString();
     console.log("Event", event)
 
+    if (event.message && event.message.attachments) {
+        console.log("attachments", event.message.attachments)
+        if (event.message.attachments[0].type == "image") {
+            var imageUrl = event.message.attachments[0].payload.url
+            console.log("Url", imageUrl)
+        }
+    }
 
     if ((event.message && event.message.text) || (event.postback && event.postback.payload)) {
         var text = event.message ? event.message.text : event.postback.payload;
