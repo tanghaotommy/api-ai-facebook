@@ -53,6 +53,8 @@ function processEvent(event) {
               res.setEncoding('utf8');
               res.on('data', (chunk) => {
                 console.log(`BODY: ${chunk}`);
+                var status = JSON.stringify(chunk).Status;
+                console.log('Status', status);
               });
               res.on('end', () => {
                 console.log('No more data in response.');
