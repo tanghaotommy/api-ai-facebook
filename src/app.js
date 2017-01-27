@@ -74,7 +74,9 @@ function processEvent(event) {
             }, {
                 sessionId: sender
             });
-            
+
+            console.log('Happened something!')
+
             apiaiRequest.on('response', (response) => {
                 console.log('Response from context setting', response.toString())
             });
