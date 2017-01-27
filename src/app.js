@@ -15,6 +15,10 @@ const APIAI_LANG = process.env.APIAI_LANG || 'en';
 const FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;
 const FB_PAGE_ACCESS_TOKEN = process.env.FB_PAGE_ACCESS_TOKEN;
 
+const app = apiai(APIAI_ACCESS_TOKEN, {
+    language: 'en'
+});
+
 const apiAiService = apiai(APIAI_ACCESS_TOKEN, {language: APIAI_LANG, requestSource: "fb"});
 const sessionIds = new Map();
 
@@ -38,7 +42,7 @@ function processEvent(event) {
             var options = {
               hostname: '54.183.198.179',
               port: 80,
-              path: '/upload',
+              path: '/addface.php',
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -47,6 +51,46 @@ function processEvent(event) {
             };
 
             var req = http.request(options, (res) => {
+              console.log(`STATUS: ${res.statusCode}`);
+              console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+              res.setEncoding('utf8');
+              res.on('data', (chunk) => {
+                console.log(`BODY: ${chunk}`);
+              });
+              res.on('end', () => {
+                console.log('No more data in response.');
+              });
+            });
+
+            req.on('error', (e) => {
+              console.log(`problem with request: ${e.message}`);
+            });
+
+            // write data to request body
+            req.write(postData);
+            req.end();
+
+            postData = JSON.stringify({
+              'name' : 'user_send_photo',
+              'lifespan' : 3
+            });
+
+            options = {
+              hostname: 'https://api.api.ai',
+              port: 80,
+              path: `/v1/contexts?sessionId=${sender}`,
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Content-Length': Buffer.byteLength(postData),
+                'Authorization': `Bearer ${APIAI_ACCESS_TOKEN}`
+              }
+            };
+
+            console.log('Sent message', postData)
+            console.log('Options', options)
+
+            req = http.request(options, (res) => {
               console.log(`STATUS: ${res.statusCode}`);
               console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
               res.setEncoding('utf8');
