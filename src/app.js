@@ -56,7 +56,7 @@ function processEvent(event) {
                 var status = JSON.parse(chunk).Status;
                 console.log('Status', status);
                 if (status == 0) {
-                    let apiaiRequest = apiAiService.ContextsRequest({
+                    let apiaiRequest = apiAiService.contextsRequest({
                       'name' : 'user_send_photo',
                       'lifespan' : 3
                     }, {
