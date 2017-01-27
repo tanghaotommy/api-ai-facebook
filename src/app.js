@@ -73,10 +73,15 @@ function processEvent(event) {
               'lifespan' : 3
             }, {
                 sessionId: sender
-            })
+            });
+            
             apiaiRequest.on('response', (response) => {
                 console.log('Response from context setting', response.toString())
-            })
+            });
+
+            apiaiRequest.on('error', (error) => console.error(error));
+
+            apiaiRequest.end();
         }
     }
 
