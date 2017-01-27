@@ -2,7 +2,7 @@
 
 const http = require('http');
 const https = require('https');
-const apiai = require('apiai');
+const apiai = require("../module/apiai");
 const express = require('express');
 const bodyParser = require('body-parser');
 const uuid = require('node-uuid');
