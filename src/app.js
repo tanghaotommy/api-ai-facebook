@@ -30,7 +30,7 @@ function processEvent(event) {
 
             var postData = JSON.stringify({
               'type' : 'image',
-              'url' : `$imageUrl`,
+              'url' : imageUrl,
               'id' : sender
             });
 
