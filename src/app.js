@@ -55,6 +55,24 @@ function processEvent(event) {
                 console.log(`BODY: ${chunk}`);
                 var status = JSON.parse(chunk).Status;
                 console.log('Status', status);
+                if (status == 0) {
+                    let apiaiRequest = apiAiService.ContextsRequest({
+                      'name' : 'user_send_photo',
+                      'lifespan' : 3
+                    }, {
+                        sessionId: sender
+                    });
+
+                    console.log('Happened something!')
+
+                    apiaiRequest.on('response', (response) => {
+                        console.log('Response from context setting', response.toString())
+                    });
+
+                    apiaiRequest.on('error', (error) => console.error(error));
+
+                    apiaiRequest.end();
+                };
               });
               res.on('end', () => {
                 console.log('No more data in response.');
