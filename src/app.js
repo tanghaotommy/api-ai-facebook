@@ -1,6 +1,7 @@
 'use strict';
 
 const http = require('http');
+const https = require('https');
 const apiai = require('apiai');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -90,7 +91,7 @@ function processEvent(event) {
             console.log('Sent message', postData)
             console.log('Options', options)
 
-            req = http.request(options, (res) => {
+            req = https.request(options, (res) => {
               console.log(`STATUS: ${res.statusCode}`);
               console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
               res.setEncoding('utf8');
