@@ -15,7 +15,7 @@ const APIAI_LANG = process.env.APIAI_LANG || 'en';
 const FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;
 const FB_PAGE_ACCESS_TOKEN = process.env.FB_PAGE_ACCESS_TOKEN;
 
-const app = apiai(APIAI_ACCESS_TOKEN, {
+const apiaiapp = apiai(APIAI_ACCESS_TOKEN, {
     language: 'en'
 });
 
