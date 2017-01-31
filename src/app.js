@@ -74,7 +74,7 @@ function processEvent(event) {
                     apiaiRequest.end();
 
                     var textPart = "Oh, what do you want to do with this photo?"
-                    sendFBMessage(sender, {text: textPart}, callback);
+                    sendFBMessage(sender, {text: textPart});
                 };
               });
               res.on('end', () => {
