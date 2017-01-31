@@ -39,7 +39,7 @@ function processEvent(event) {
             var options = {
               hostname: '54.183.198.179',
               port: 80,
-              path: '/addface.php',
+              path: '/sendphoto.php',
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ function processEvent(event) {
                 if (status == 0) {
                     let apiaiRequest = apiAiService.contextsRequest({
                       'name' : 'user_send_photo',
-                      'lifespan' : 3
+                      'lifespan' : 2
                     }, {
                         sessionId: sender
                     });
@@ -72,6 +72,9 @@ function processEvent(event) {
                     apiaiRequest.on('error', (error) => console.error(error));
 
                     apiaiRequest.end();
+
+                    var textPart = "Oh, what do you want to do with this photo?"
+                    sendFBMessage(sender, {text: textPart}, callback);
                 };
               });
               res.on('end', () => {
