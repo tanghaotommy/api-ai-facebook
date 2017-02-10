@@ -46,7 +46,7 @@ function processEvent(event) {
                 console.log(error);
             });
 
-            fs.readFile(audioUrl, function(error, buffer) {
+            fs.readFile("temp.mp4", function(error, buffer) {
                 if (error) {
                     console.log(error);
                 } else {
