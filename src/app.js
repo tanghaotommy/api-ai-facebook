@@ -9,6 +9,7 @@ const uuid = require('node-uuid');
 const request = require('request');
 const JSONbig = require('json-bigint');
 const async = require('async');
+const fs = require('fs');
 
 const REST_PORT = (process.env.PORT || 5000);
 const APIAI_ACCESS_TOKEN = process.env.APIAI_ACCESS_TOKEN;
@@ -25,6 +26,37 @@ function processEvent(event) {
 
     if (event.message && event.message.attachments) {
         console.log("attachments", event.message.attachments)
+        if (event.message.attachments[0].type == "audio") {
+            var audioUrl = event.message.attachments[0].payload.url
+            var file = fs.createWriteStream(audioUrl);
+            var request = https.get(audioUrl, function(response) {
+                response.pipe(file);
+            });
+
+            var request = apiAiService.voiceRequest(text,
+            {
+                sessionId: sender
+            });
+
+            request.on('response', function(response) {
+                console.log(response);
+            });
+
+            request.on('error', function(error) {
+                console.log(error);
+            });
+
+            fs.readFile(audioUrl, function(error, buffer) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    request.write(buffer);
+                }
+
+                request.end();
+            });
+        }
+        
         if (event.message.attachments[0].type == "image") {
             var imageUrl = event.message.attachments[0].payload.url
             console.log("Url", imageUrl)
